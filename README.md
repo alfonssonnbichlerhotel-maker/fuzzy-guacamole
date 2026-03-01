@@ -1,10 +1,10 @@
  (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
 diff --git a/README.md b/README.md
 new file mode 100644
-index 0000000000000000000000000000000000000000..6b5c68dbad0560e832be42be9b3dd35fde344117
+index 0000000000000000000000000000000000000000..ab521b79dfbffbffefffba6f9b10486a852991ca
 --- /dev/null
 +++ b/README.md
-@@ -0,0 +1,45 @@
+@@ -0,0 +1,71 @@
 +# ChatGPT-like Website Starter
 +
 +This repository contains a minimal starter blueprint for building a ChatGPT-like web app with:
@@ -44,6 +44,32 @@ index 0000000000000000000000000000000000000000..6b5c68dbad0560e832be42be9b3dd35f
 +```
 +
 +Then open `http://localhost:3000/chat`.
++
++## 5) Publish your website (Vercel)
++
++This starter is easiest to publish on Vercel.
++
++1. Push this project to GitHub.
++2. Create a Vercel account and click **Add New Project**.
++3. Import the GitHub repository.
++4. Set environment variables in Vercel project settings:
++   - `OPENAI_API_KEY`
++   - `DATABASE_URL`
++5. Provision a Postgres database (for example Neon/Supabase) and use that connection string as `DATABASE_URL`.
++6. Run Prisma in production to create tables:
++
++```bash
++npx prisma migrate deploy
++```
++
++7. Redeploy and open your Vercel URL.
++
++### Optional: production build checks before deploy
++
++```bash
++npm run build
++npm run start
++```
 +
 +## Notes
 +
